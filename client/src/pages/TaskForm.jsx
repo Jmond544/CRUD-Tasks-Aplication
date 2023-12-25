@@ -1,23 +1,47 @@
 import { Formik, Form } from "formik";
-import { createTaskRequest } from "../api/tasks.api";
+import { useTask } from "../Context/TaskContext";
+import { useParams, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 export default function TaskForm() {
+  const { createTask, updateTask, getTask} = useTask();
+  const params = useParams();
+  const navigate = useNavigate();
+  const [task, setTask] = useState({
+    title: "",
+    description: "",
+  });
+
+  useEffect(() => {
+    const loadTask = async () => {
+      if (params.id) {
+        const responseData = await getTask(params.id);
+        setTask({
+          title: responseData[0].title,
+          description: responseData[0].description,
+        });
+      }
+    };
+    loadTask();
+  }, []);
   return (
     <div>
+      <h1>{params.id ? `Edit task ${params.id}` : `Create task`}</h1>
       <Formik
-        initialValues={{
-          title: "",
-          description: "",
-        }}
-        onSubmit={async (values, actions) => {
+        initialValues={task}
+        enableReinitialize={true}
+        onSubmit={async (values) => {
           console.log(values);
-          try {
-            const response = await createTaskRequest(values);
-            console.log(response);
-            actions.resetForm();
-          } catch (error) {
-            console.log(error);
+          if (params.id) {
+            await updateTask(params.id, values);
+            navigate("/");
+          } else {
+            await createTask(values);
           }
+          setTask({
+            title: "",
+            description: "",
+          });
         }}
       >
         {({ handleChange, handleSubmit, values, isSubmitting }) => (
@@ -39,7 +63,7 @@ export default function TaskForm() {
               value={values.description}
             ></textarea>
             <button type="submit" disabled={isSubmitting}>
-                {isSubmitting ? "Saving..." : "Save"}
+              {isSubmitting ? "Saving..." : "Save"}
             </button>
           </Form>
         )}
