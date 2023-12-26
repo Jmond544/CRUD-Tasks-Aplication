@@ -32,7 +32,6 @@ const createTask = async (req, res) => {
       "INSERT INTO tasks (title, description) VALUES (?, ?)",
       [title, description]
     );
-    console.log(result);
     res.json({
       id: result.insertId,
       title,
