@@ -6,6 +6,7 @@ export default function TaskPage() {
   const { tasks, loadTasks } = useTask();
   useEffect(() => {
     loadTasks();
+    console.log(import.meta.env.VITE_API_URL)
   }, []);
 
   function renderMain() {

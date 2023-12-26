@@ -23,6 +23,7 @@ export default function TaskForm() {
       }
     };
     loadTask();
+    console.log(import.meta.env.API_URL)
   }, []);
   return (
     <div className="bg-gray-100 flex flex-col p-5 w-96 mx-auto rounded-md mt-8 gap-4 drop-shadow-2xl">
