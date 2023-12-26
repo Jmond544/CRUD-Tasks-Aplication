@@ -8,7 +8,7 @@ import { TaskProvider } from "./Context/TaskContext";
 
 function App() {
   return (
-    <div className="bg-zinc-400 h-screen">
+    <div className="bg-gray-200 min-h-screen">
       <TaskProvider>
         <Navbar />
         <Routes>

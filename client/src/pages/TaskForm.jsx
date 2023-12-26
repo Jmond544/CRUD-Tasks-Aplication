@@ -4,7 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 export default function TaskForm() {
-  const { createTask, updateTask, getTask} = useTask();
+  const { createTask, updateTask, getTask } = useTask();
   const params = useParams();
   const navigate = useNavigate();
   const [task, setTask] = useState({
@@ -25,8 +25,10 @@ export default function TaskForm() {
     loadTask();
   }, []);
   return (
-    <div>
-      <h1>{params.id ? `Edit task ${params.id}` : `Create task`}</h1>
+    <div className="bg-gray-100 flex flex-col p-5 w-96 mx-auto rounded-md mt-8 gap-4 drop-shadow-2xl">
+      <h1 className="text-center text-2xl font-bold">
+        {params.id ? `Edit task ${params.id}` : `Create task`}
+      </h1>
       <Formik
         initialValues={task}
         enableReinitialize={true}
@@ -34,10 +36,10 @@ export default function TaskForm() {
           console.log(values);
           if (params.id) {
             await updateTask(params.id, values);
-            navigate("/");
           } else {
             await createTask(values);
           }
+          navigate("/");
           setTask({
             title: "",
             description: "",
@@ -45,24 +47,33 @@ export default function TaskForm() {
         }}
       >
         {({ handleChange, handleSubmit, values, isSubmitting }) => (
-          <Form onSubmit={handleSubmit}>
-            <label>title</label>
+          <Form
+            className="flex flex-col gap-3 font-bold"
+            onSubmit={handleSubmit}
+          >
+            <label>Title</label>
             <input
+              className="bg-white p-1 rounded-md mb-4 font-normal border-none outline-none"
               type="text"
               name="title"
               placeholder="Write a title"
               onChange={handleChange}
               value={values.title}
             />
-            <label>descripcion</label>
+            <label>Descripcion</label>
             <textarea
+              className="bg-white p-1 rounded-md mb-4 font-normal border-none outline-none"
               name="description"
               rows="3"
               placeholder="Write a description"
               onChange={handleChange}
               value={values.description}
             ></textarea>
-            <button type="submit" disabled={isSubmitting}>
+            <button
+              className="bg-zinc-900 hover:bg-zinc-800 text-white p-1 rounded-md"
+              type="submit"
+              disabled={isSubmitting}
+            >
               {isSubmitting ? "Saving..." : "Save"}
             </button>
           </Form>
