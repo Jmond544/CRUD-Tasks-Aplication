@@ -3,7 +3,7 @@ import { poll } from "../db.js";
 const getTasks = async (req, res) => {
   try {
     const [result] = await poll.query(
-      "SELECT * FROM tasks ORDER BY create_at DESC"
+      "SELECT id, title, description, done, DATE_FORMAT(create_at, '%Y-%m-%d | %H:%i:%s') AS create_at FROM tasks ORDER BY create_at DESC"
     );
     res.json(result);
   } catch (error) {
