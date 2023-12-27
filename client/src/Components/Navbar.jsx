@@ -19,7 +19,7 @@ export default function Navbar() {
     }
   } , [darkMode]);
   return (
-    <div className="bg-gray-300 text-gray-900 flex justify-between p-5 items-center font-bold dark:bg-gray-900 dark:text-white">
+    <div className="bg-gray-300 text-gray-900 flex sm:flex-row gap-5 flex-col justify-between p-5 items-center font-bold dark:bg-gray-900 dark:text-white">
       <h1 className="font-bold text-xl">
         <Link to="/">
           <span className="text-cyan-500">React </span>-{" "}

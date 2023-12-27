@@ -26,7 +26,7 @@ export default function TaskForm() {
     console.log(import.meta.env.API_URL)
   }, []);
   return (
-    <div className="bg-gray-100 text-gray-900 flex flex-col p-5 w-96 mx-auto rounded-md gap-4 drop-shadow-2xl dark:bg-gray-900 dark:text-gray-200">
+    <div className="bg-gray-100 text-gray-900 flex flex-col p-5 sm:w-96 w-auto mx-auto rounded-md gap-4 drop-shadow-2xl dark:bg-gray-900 dark:text-gray-200">
       <h1 className="text-center text-2xl font-bold">
         {params.id ? `Edit task ${params.id}` : `Create task`}
       </h1>
