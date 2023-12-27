@@ -26,21 +26,21 @@ export default function TaskCard({ task }) {
       </header>
       <p className="text-sm break-words">{task.description}</p>
       <span>{task.create_at}</span>
-      <div className="flex gap-2 justify-center ">
+      <div className="flex gap-2 justify-center font-bold text-sm">
         <button
-          className="bg-red-500 py-1 px-2 rounded-md items-center hover:bg-red-400"
+          className="text-red-950 bg-red-500 py-1 px-2 rounded-md items-center hover:bg-red-400 transition duration-300 ease-in-out"
           onClick={() => deleteTask(task.id)}
         >
           Delete
         </button>
         <button
-          className="bg-green-500 py-1 px-2 rounded-md items-center  hover:bg-green-400"
+          className="text-green-950 bg-green-500 py-1 px-2 rounded-md items-center  hover:bg-green-400 transition duration-300 ease-in-out"
           onClick={() => navigate(`/edit/${task.id}`)}
         >
           Edit
         </button>
         <button
-          className="bg-yellow-500 py-1 px-2 rounded-md items-center  hover:bg-yellow-400"
+          className="text-yellow-950 bg-yellow-500 py-1 px-2 rounded-md items-center  hover:bg-yellow-400 transition duration-300 ease-in-out"
           onClick={() => handleDone()}
         >
           Toggle Task
