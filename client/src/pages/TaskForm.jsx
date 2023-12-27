@@ -26,7 +26,7 @@ export default function TaskForm() {
     console.log(import.meta.env.API_URL)
   }, []);
   return (
-    <div className="bg-gray-100 flex flex-col p-5 w-96 mx-auto rounded-md mt-8 gap-4 drop-shadow-2xl">
+    <div className="bg-gray-100 text-gray-900 flex flex-col p-5 w-96 mx-auto rounded-md gap-4 drop-shadow-2xl dark:bg-gray-900 dark:text-gray-200">
       <h1 className="text-center text-2xl font-bold">
         {params.id ? `Edit task ${params.id}` : `Create task`}
       </h1>
@@ -54,7 +54,7 @@ export default function TaskForm() {
           >
             <label>Title</label>
             <input
-              className="bg-white p-1 rounded-md mb-4 font-normal border-none outline-none"
+              className="bg-white p-1 rounded-md mb-4 font-normal border-none outline-none dark:bg-gray-700"
               type="text"
               name="title"
               placeholder="Write a title"
@@ -63,7 +63,7 @@ export default function TaskForm() {
             />
             <label>Descripcion</label>
             <textarea
-              className="bg-white p-1 rounded-md mb-4 font-normal border-none outline-none"
+              className="bg-white p-1 rounded-md mb-4 font-normal border-none outline-none dark:bg-gray-700"
               name="description"
               rows="3"
               placeholder="Write a description"
@@ -71,7 +71,7 @@ export default function TaskForm() {
               value={values.description}
             ></textarea>
             <button
-              className="bg-zinc-900 hover:bg-zinc-800 text-white p-1 rounded-md"
+              className="bg-gray-900 hover:bg-gray-800 text-white p-1 rounded-md dark:bg-gray-800 dark:hover:bg-gray-700 transition duration-300 ease-in-out"
               type="submit"
               disabled={isSubmitting}
             >

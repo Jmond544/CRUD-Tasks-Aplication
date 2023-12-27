@@ -6,13 +6,12 @@ export default function TaskPage() {
   const { tasks, loadTasks } = useTask();
   useEffect(() => {
     loadTasks();
-    console.log(import.meta.env.VITE_API_URL)
   }, []);
 
   function renderMain() {
     if (tasks.length === 0) {
       return (
-        <h1 className="text-xl font-bold text-center mt-8 bg-zinc-50 p-5 rounded-lg w-80 m-auto drop-shadow-2xl">
+        <h1 className="text-xl font-bold text-center mt-8 bg-zinc-50 p-5 rounded-lg w-80 m-auto drop-shadow-2xl dark:text-white dark:bg-gray-700">
           No tasks. Create one!
         </h1>
       );
@@ -28,7 +27,7 @@ export default function TaskPage() {
 
   return (
     <div className="flex flex-col gap-5 p-5">
-      <h1 className="flex justify-center text-2xl font-bold">Tasks</h1>
+      <h1 className="text-gray-800 flex justify-center text-2xl font-bold dark:text-gray-200">Tasks</h1>
       {renderMain()}
     </div>
   );

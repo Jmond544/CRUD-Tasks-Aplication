@@ -10,7 +10,7 @@ import { TaskProvider } from "./Context/TaskContext";
 function App() {
   return (
     <TaskProvider>
-      <div className="bg-gray-200 min-h-screen flex flex-col justify-between">
+      <div className="bg-gray-100 min-h-screen flex flex-col justify-between dark:bg-gray-800">
         <Navbar />
         <Routes>
           <Route path="/" element={<TaskPage />} />
