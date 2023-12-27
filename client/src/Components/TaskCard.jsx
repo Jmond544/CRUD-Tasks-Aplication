@@ -25,7 +25,7 @@ export default function TaskCard({ task }) {
         </span>
       </header>
       <p className="text-sm break-words">{task.description}</p>
-      <span>{task.create_at}</span>
+      <span className="text-sm italic">{task.create_at}</span>
       <div className="flex gap-2 justify-center font-bold text-sm">
         <button
           className="text-red-950 bg-red-500 py-1 px-2 rounded-md items-center hover:bg-red-400 transition duration-300 ease-in-out"
