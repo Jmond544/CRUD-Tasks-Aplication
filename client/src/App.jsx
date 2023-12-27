@@ -4,12 +4,13 @@ import TaskPage from "./pages/TaskPage";
 import TaskForm from "./pages/TaskForm";
 import NotFound from "./pages/NotFound";
 import Navbar from "./Components/Navbar";
+import Footer from "./Components/footer";
 import { TaskProvider } from "./Context/TaskContext";
 
 function App() {
   return (
-    <div className="bg-gray-200 min-h-screen">
-      <TaskProvider>
+    <TaskProvider>
+      <div className="bg-gray-200 min-h-screen flex flex-col justify-between">
         <Navbar />
         <Routes>
           <Route path="/" element={<TaskPage />} />
@@ -17,8 +18,9 @@ function App() {
           <Route path="/edit/:id" element={<TaskForm />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
-      </TaskProvider>
-    </div>
+        <Footer />
+      </div>
+    </TaskProvider>
   );
 }
 
