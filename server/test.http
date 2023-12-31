@@ -36,7 +36,7 @@ Content-Type: application/json
 
 ####
 GET http://localhost:4000/tasks HTTP/1.1
-X-Access-Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhhN2JlMmFkLWE2YjgtMTFlZS1hNWYzLTAyNDJhYzExMDAwMiIsImlhdCI6MTcwMzkwMjIwMiwiZXhwIjoxNzAzOTg4NjAyfQ.BSduW_fAWsxbD0LFI79km8r6HeIjnJbi6w7RId1fu0s
+X-Access-Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdmYTdmZGY4LWE2YjgtMTFlZS1hNWYzLTAyNDJhYzExMDAwMiIsImlhdCI6MTcwMzk2NDYwNCwiZXhwIjoxNzA0MDUxMDA0fQ.LE8ubJEg03V_342Ym2sPNOuYgsNP1FSE3EYzMWNPiv8
 
 ###
 
