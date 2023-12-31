@@ -7,6 +7,8 @@ import {
   updateTaskRequest,
   getTaskRequest,
   toggleTaskDoneRequest,
+  createUserRequest,
+  loginRequest,
 } from "../api/tasks.api";
 
 export const TaskContext = createContext();
@@ -21,6 +23,8 @@ export const useTask = () => {
 
 export const TaskProvider = ({ children }) => {
   const [tasks, setTasks] = useState([]);
+  const [user, setUser] = useState({});
+
   async function loadTasks() {
     try {
       const tasks = await getTasksRequest();
@@ -70,22 +74,43 @@ export const TaskProvider = ({ children }) => {
         if (task.id === id) {
           task.done = task.done === 0 ? 1 : 0;
         }
-      }); 
+      });
       setTasks([...tasks]);
     } catch (error) {
       console.log(error);
     }
   };
+  const createuser = async (user) => {
+    try {
+      const response = await createUserRequest(user);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const login = async (user) => {
+    try {
+      const response = await loginRequest(user);
+      setUser(response.data);
+      return response;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <TaskContext.Provider
       value={{
         tasks,
+        user,
         loadTasks,
         deleteTask,
         createTask,
         updateTask,
         getTask,
         toggleTaskDone,
+        createuser,
+        login,
       }}
     >
       {children}

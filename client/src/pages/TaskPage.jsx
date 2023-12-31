@@ -1,11 +1,18 @@
 import { useEffect } from "react";
 import TaskCard from "../Components/TaskCard";
 import { useTask } from "../Context/TaskContext";
+import { useNavigate } from "react-router-dom";
 
 export default function TaskPage() {
   const { tasks, loadTasks } = useTask();
+  const navigate = useNavigate();
   useEffect(() => {
-    loadTasks();
+    console.log("pase por aqui")
+    if (localStorage.getItem("user_tasks")) {
+      loadTasks();
+    } else {
+      navigate("/login");
+    }
   }, []);
 
   function renderMain() {

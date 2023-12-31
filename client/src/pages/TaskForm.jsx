@@ -23,7 +23,6 @@ export default function TaskForm() {
       }
     };
     loadTask();
-    console.log(import.meta.env.API_URL)
   }, []);
   return (
     <div className="bg-gray-100 text-gray-900 flex flex-col p-5 sm:w-96 w-auto mx-auto rounded-md gap-4 drop-shadow-2xl dark:bg-gray-900 dark:text-gray-200">
@@ -34,7 +33,6 @@ export default function TaskForm() {
         initialValues={task}
         enableReinitialize={true}
         onSubmit={async (values) => {
-          console.log(values);
           if (params.id) {
             await updateTask(params.id, values);
           } else {

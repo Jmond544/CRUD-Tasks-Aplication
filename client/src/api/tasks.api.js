@@ -1,28 +1,41 @@
 import axios from "axios";
-import {API_URL} from "./config.js"
+import { API_URL } from "./config.js";
+import { instanceAxios } from "./axiosInstance.js";
 
 export const createTaskRequest = async (task) => {
-  await axios.post(`${API_URL}/tasks`, task);
+  await instanceAxios.post(`${API_URL}/tasks`, task);
 };
 
 export const getTasksRequest = async () => {
-  const response = await axios.get(`${API_URL}/tasks`);
+  const response = await instanceAxios.get(`/tasks`);
+  console.log(instanceAxios)
   return response.data;
 };
 
 export const deleteTaskRequest = async (id) => {
-  await axios.delete(`${API_URL}/tasks/${id}`);
+  const response = await instanceAxios.delete(`${API_URL}/tasks/${id}`);
+  return response.data;
 };
 
 export const updateTaskRequest = async (id, task) => {
-  return await axios.put(`${API_URL}/tasks/${id}`, task);
+  return await instanceAxios.put(`${API_URL}/tasks/${id}`, task);
 };
 
 export const getTaskRequest = async (id) => {
-  const response = await axios.get(`${API_URL}/tasks/${id}`);
+  const response = await instanceAxios.get(`${API_URL}/tasks/${id}`);
   return response.data;
 };
 
 export const toggleTaskDoneRequest = async (id, done) => {
-  await axios.put(`${API_URL}/tasks/${id}`, { done });
+  await instanceAxios.put(`${API_URL}/tasks/${id}`, { done });
+};
+
+export const createUserRequest = async (user) => {
+  const response = await axios.post(`${API_URL}/signup`, user);
+  return response;
+};
+
+export const loginRequest = async (user) => {
+  const response = await axios.post(`${API_URL}/login`, user);
+  return response;
 };
