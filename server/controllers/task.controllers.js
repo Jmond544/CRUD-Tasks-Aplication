@@ -50,10 +50,10 @@ const createTask = async (req, res) => {
 const updateTask = async (req, res) => {
   try {
     const { id } = req.params;
-    const [result] = await poll.query("UPDATE tasks SET ? WHERE id = UUID_TO_BIN(?)", [
-      req.body,
-      id,
-    ]);
+    const [result] = await poll.query(
+      "UPDATE tasks SET ? WHERE id = UUID_TO_BIN(?)",
+      [req.body, id]
+    );
     res.json(result);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -63,12 +63,14 @@ const updateTask = async (req, res) => {
 const deleteTask = async (req, res) => {
   try {
     const { id } = req.params;
-    console.log(id)
-    const [result] = await poll.query("DELETE FROM tasks WHERE id = UUID_TO_BIN(?)", [id]);
+    const [result] = await poll.query(
+      "DELETE FROM tasks WHERE id = UUID_TO_BIN(?)",
+      [id]
+    );
     if (result.affectedRows === 0) {
       return res.status(404).json({ message: "Task doesn't exist" });
     }
-    res.status(204);
+    res.status(204).json({ message: "Task deleted" });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -103,10 +105,11 @@ const createUser = async (req, res) => {
 
 const login = async (req, res) => {
   try {
+    console.log(req.body);
     const { username, password } = req.body;
     const password_encrypted = md5(password);
     const [result] = await poll.query(
-      "SELECT * FROM users WHERE username = ? AND password = ?",
+      "SELECT BIN_TO_UUID(id) AS id, username, email FROM users WHERE username = ? AND password = ?",
       [username, password_encrypted]
     );
     if (result.length === 0) {
