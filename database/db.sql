@@ -17,3 +17,10 @@ CREATE TABLE users (
     email VARCHAR(200) NOT NULL UNIQUE,
     password VARCHAR(200) NOT NULL
 );
+
+-- Constraint
+
+ALTER TABLE tasks
+ADD CONSTRAINT fk_user_tasks
+FOREIGN KEY (user_id)
+REFERENCES users(id);
