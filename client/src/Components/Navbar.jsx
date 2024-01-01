@@ -22,7 +22,7 @@ const Navbar = () => {
     if (username) {
       return (
         <li
-          className="bg-gray-200 p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition duration-500 dark:bg-gray-800"
+          className="bg-gray-200 p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition duration-500 cursor-pointer dark:bg-gray-800"
           onClick={() => setShowProfile(!showProfile)}
         >
           {username}
