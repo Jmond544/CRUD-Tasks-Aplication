@@ -5,18 +5,28 @@ import {
   getTask,
   getTasks,
   updateTask,
+  createUser,
+  login,
 } from "../controllers/task.controllers.js";
+import { verifyToken } from "../controllers/verifyToken.js";
 
 const router = Router();
 
-router.get("/tasks", getTasks);
+// Tasks
 
-router.get("/tasks/:id", getTask);
+router.get("/tasks", verifyToken, getTasks);
 
-router.post("/tasks", createTask);
+router.get("/tasks/:id", verifyToken, getTask);
 
-router.put("/tasks/:id", updateTask);
+router.post("/tasks", verifyToken, createTask);
 
-router.delete("/tasks/:id", deleteTask);
+router.put("/tasks/:id", verifyToken, updateTask);
+
+router.delete("/tasks/:id", verifyToken, deleteTask);
+
+// Users
+
+router.post("/signup", createUser);
+router.post("/login", login);
 
 export default router;
