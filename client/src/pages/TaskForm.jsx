@@ -13,6 +13,9 @@ export default function TaskForm() {
   });
 
   useEffect(() => {
+    if (!localStorage.getItem("user_tasks")) {
+      navigate("/login");
+    }
     const loadTask = async () => {
       if (params.id) {
         const responseData = await getTask(params.id);

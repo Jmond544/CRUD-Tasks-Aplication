@@ -9,6 +9,7 @@ import {
   toggleTaskDoneRequest,
   createUserRequest,
   loginRequest,
+  registerRequest,
 } from "../api/tasks.api";
 
 export const TaskContext = createContext();
@@ -28,9 +29,15 @@ export const TaskProvider = ({ children }) => {
   async function loadTasks() {
     try {
       const tasks = await getTasksRequest();
+      console.log(tasks)
       setTasks(tasks);
     } catch (error) {
-      console.log(error);
+      if(error.response.data.message === "Expired"){
+        localStorage.removeItem("user_tasks");
+        window.location.reload();
+      }else{
+        console.log(error);
+      }
     }
   }
   const deleteTask = async (id) => {
@@ -38,7 +45,12 @@ export const TaskProvider = ({ children }) => {
       await deleteTaskRequest(id);
       setTasks(tasks.filter((task) => task.id !== id));
     } catch (error) {
-      console.log(error);
+      if(error.response.data.message === "Expired"){
+        localStorage.removeItem("user_tasks");
+        window.location.reload();
+      }else{
+        console.log(error);
+      }
     }
   };
   const createTask = async (task) => {
@@ -46,7 +58,12 @@ export const TaskProvider = ({ children }) => {
       const response = await createTaskRequest(task);
       console.log(response);
     } catch (error) {
-      console.log(error);
+      if(error.response.data.message === "Expired"){
+        localStorage.removeItem("user_tasks");
+        window.location.reload();
+      }else{
+        console.log(error);
+      }
     }
   };
   const updateTask = async (id, task) => {
@@ -54,7 +71,12 @@ export const TaskProvider = ({ children }) => {
       const response = await updateTaskRequest(id, task);
       console.log(response);
     } catch (error) {
-      console.log(error);
+      if(error.response.data.message === "Expired"){
+        localStorage.removeItem("user_tasks");
+        window.location.reload();
+      }else{
+        console.log(error);
+      }
     }
   };
   const getTask = async (id) => {
@@ -63,7 +85,12 @@ export const TaskProvider = ({ children }) => {
       console.log(task);
       return task;
     } catch (error) {
-      console.log(error);
+      if(error.response.data.message === "Expired"){
+        localStorage.removeItem("user_tasks");
+        window.location.reload();
+      }else{
+        console.log(error);
+      }
     }
   };
   const toggleTaskDone = async (id) => {
@@ -77,7 +104,12 @@ export const TaskProvider = ({ children }) => {
       });
       setTasks([...tasks]);
     } catch (error) {
-      console.log(error);
+      if(error.response.data.message === "Expired"){
+        localStorage.removeItem("user_tasks");
+        window.location.reload();
+      }else{
+        console.log(error);
+      }
     }
   };
   const createuser = async (user) => {
@@ -97,6 +129,15 @@ export const TaskProvider = ({ children }) => {
       console.log(error);
     }
   };
+  const register = async (user) => {
+    try {
+      const response = await registerRequest(user);
+      console.log(response);
+      return response;
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <TaskContext.Provider
@@ -111,6 +152,7 @@ export const TaskProvider = ({ children }) => {
         toggleTaskDone,
         createuser,
         login,
+        register,
       }}
     >
       {children}

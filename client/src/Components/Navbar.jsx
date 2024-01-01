@@ -25,7 +25,7 @@ const Navbar = () => {
           className="bg-gray-200 p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition duration-500 dark:bg-gray-800"
           onClick={() => setShowProfile(!showProfile)}
         >
-          <Link to="/">{username}</Link>
+          {username}
           {showProfile && <DropDownProfile />}
         </li>
       );

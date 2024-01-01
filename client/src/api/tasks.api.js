@@ -8,7 +8,6 @@ export const createTaskRequest = async (task) => {
 
 export const getTasksRequest = async () => {
   const response = await instanceAxios.get(`/tasks`);
-  console.log(instanceAxios)
   return response.data;
 };
 
@@ -39,3 +38,8 @@ export const loginRequest = async (user) => {
   const response = await axios.post(`${API_URL}/login`, user);
   return response;
 };
+
+export const registerRequest = async (user) => {
+  const response = await axios.post(`${API_URL}/signup`, user);
+  return response;
+}

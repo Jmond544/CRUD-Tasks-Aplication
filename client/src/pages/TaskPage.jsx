@@ -7,7 +7,6 @@ export default function TaskPage() {
   const { tasks, loadTasks } = useTask();
   const navigate = useNavigate();
   useEffect(() => {
-    console.log("pase por aqui")
     if (localStorage.getItem("user_tasks")) {
       loadTasks();
     } else {
